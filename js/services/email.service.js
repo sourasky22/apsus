@@ -4,7 +4,7 @@ import eventBus, { USR_MSG_DISPLAY } from './event-bus.service.js'
 import LoremIpsum from './loremIpsum.js';
 import utilService from './util.service.js';
 
-var uniqueId = 0;
+var uniqueId = 1;
 
 const KEY = 'emailAppKey';
 
@@ -17,7 +17,14 @@ function query(filter = null) {
                 storageService.store(KEY, emails);
             }
             if (filter === null) return emails;
-            else return emails.filter(email => email.vendor.includes(filter.byVendor))
+            else return emails.filter(email => {
+                if (filter.emailStatus !== 'all') {
+                    if (filter.emailStatus !== email.isOpen) return false
+                } 
+                return true;
+            }
+            //   email.description.includes(filter.txt) || email.subject.includes(filter.txt)
+            )
         })
 }
 
@@ -41,13 +48,14 @@ function deleteEmail(emailId) {
 
 
 function saveEmail(email) {
+    console.log('save email', email)
     return storageService.load(KEY)
         .then(emails => {
             if (email.id) {
                 var emailIdx = emails.findIndex(currEmail => currEmail.id === email.id)
                 emails.splice(emailIdx, 1, email);
             } else {
-                email.id = Date.now();
+                email = createEmail();
                 emails.push(email);
             }
             return storageService.store(KEY, emails);
@@ -76,7 +84,7 @@ function createEmail() {
         sentAt: moment(Date.now()).format('LT'),
         description: loremIpsum.generate(utilService.getRandomInt(10, 30), utilService.getRandomInt(1, 4)),
         categories: ['Computers', 'Hack'],
-        isOpen: false
+        isOpen: 'unread'
     }
     return email;
 }

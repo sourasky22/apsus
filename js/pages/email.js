@@ -13,7 +13,7 @@ export default {
     template:`
     <section class="email container grid-container">
         <div class="item1">
-            <email-filter></email-filter>
+            <email-filter @filtered="filterBy"></email-filter>
             <email-list class="email-list" @selected="emailToShow" :emails="emails" v-if="emails"></email-list>
         </div>
         <div class="item2">
@@ -41,9 +41,10 @@ export default {
         })
     },
     methods: {
-        emailToShow(event) {
-           this.selectedEmail = this.emails.find(email => email.id === event);
-           this.selectedEmail.isOpen = true;
+        emailToShow(emailClicked) {
+           this.selectedEmail = this.emails.find(email => email.id === emailClicked);
+           this.selectedEmail.isOpen = 'read';
+           emailService.saveEmail(this.selectedEmail);
            console.log('select email',this.selectedEmail);
         },
         //desicide if use delete here or in email-preview cmp
@@ -51,6 +52,13 @@ export default {
             console.log('select email',emailId);
             emailService.deleteEmail(emailId)
             .then(emails =>{
+                this.emails = emails;
+            })
+        },
+        filterBy(input) {
+            emailService.query(input)
+            .then(emails => {
+                console.log('create book', emails);
                 this.emails = emails;
             })
         }
