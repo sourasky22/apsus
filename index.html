@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <nav>
+            <router-link exact to="/">Home</router-link> |
+            <router-link to="/email">Email</router-link> |
+            <router-link to="/place">Place</router-link> |
+            <router-link to="/keep">Keeper</router-link>
+        </nav>
+        <main>
+        <router-view></router-view>
+    </main>
+    </div>
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-router.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

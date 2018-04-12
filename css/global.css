@@ -1,0 +1,40 @@
+
+/*--------------------------*/
+
+
+ .container{
+     margin: 0 auto;
+     margin-top: 60px;
+ }
+
+ .email-list{
+    height: 100%;
+   overflow-x: scroll;
+ }
+ 
+
+ /*-------grid layout---------*/
+
+.grid-container {
+  display: grid;
+  background-color: rgb(255, 180, 237);
+  height: calc( (100vh - 60px) );  
+  margin-left:0;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.item1 {
+    grid-area: 1 / 1 / 12 / span 4;
+  }
+  .item2 {
+    grid-area: 1 / 6 / 12 / 13;
+  }
+  .item3 {
+    grid-area: 12 / 1 / 13 / 13;
+    text-align: center;
+  }
+  
+
+
+
