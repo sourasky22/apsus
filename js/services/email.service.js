@@ -39,6 +39,16 @@ function deleteEmail(emailId) {
 }
 
 
+function addEmail(email) {
+    return storageService.load(KEY)
+    console.log('legnth before adding', emails.length)
+    .then(emails => {
+        emails.push(email);
+        storageService.store(KEY, emails);
+        console.log('legnth after adding', emails.length)
+        return storageService.load(KEY)
+    })
+}
 
 function saveEmail(email) {
     return storageService.load(KEY)
@@ -75,7 +85,6 @@ function createEmail() {
         subject: loremIpsum.generate(utilService.getRandomInt(5, 11), utilService.getRandomInt(1, 4)),
         sentAt: moment(Date.now()).format('LT'),
         description: loremIpsum.generate(utilService.getRandomInt(10, 30), utilService.getRandomInt(1, 4)),
-        categories: ['Computers', 'Hack'],
         isOpen: false
     }
     return email;
@@ -90,6 +99,7 @@ export default {
     deleteEmail,
     saveEmail,
     createEmail,
-    generateEmails
+    generateEmails,
+    addEmail
 }
 
