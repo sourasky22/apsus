@@ -33,7 +33,8 @@ function deleteEmail(emailId) {
         .then(emails => {
             var emailIdx = emails.findIndex(email => email.id === emailId);
             emails.splice(emailIdx, 1);
-            return storageService.store(KEY, emails);
+            storageService.store(KEY, emails);
+            return storageService.load(KEY)
         })
 }
 

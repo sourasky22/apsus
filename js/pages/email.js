@@ -47,10 +47,12 @@ export default {
            console.log('select email',this.selectedEmail);
         },
         //desicide if use delete here or in email-preview cmp
-        deleteEmail(event){
-            console.log('select email',event);
-            emailService.deleteEmail(event);
-            this.$router.push('/email');
+        deleteEmail(emailId){
+            console.log('select email',emailId);
+            emailService.deleteEmail(emailId)
+            .then(emails =>{
+                this.emails = emails;
+            })
         }
     },
     components: {

@@ -15,11 +15,8 @@ export default {
     methods: {
         //not refresh
         deleteEmail() {
-            emailService.deleteEmail(this.selectedEmail)
-            .then(res => {
-                this.$router.push('/email');
-            })
-        }
+            this.$emit('delete', this.selectedEmail.id);
+            }
     },
     data() {
         return {
