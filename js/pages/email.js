@@ -12,14 +12,15 @@ import emailService from "../services/email.service.js";
 export default {
     template:`
     <section class="email container grid-container">
-        <button>
-            <email-compose>
-                Compose
-            </email-compose>
-        </button>
+            <div class="item4">
+                <email-compose @sent="addEmail">
+                    Compose
+                </email-compose>
+            </div>
         <div class="item1">
             <email-filter @filtered="filterBy"></email-filter>
-            <email-list class="email-list" @selected="emailToShow" :emails="emails" v-if="emails"></email-list>
+            <email-list class="email-list" @selected="emailToShow" :emails="emails" v-if="emails"
+             @sortSubject="sortBySubject" @sortDate="sortByDate" @toggleRead="func"></email-list>
         </div>
         <div class="item2">
         <email-details class="email-details" v-if="selectedEmail" :selectedEmail="selectedEmail" @delete="deleteEmail"></email-details>
@@ -48,16 +49,14 @@ export default {
     methods: {
         emailToShow(emailClicked) {
            this.selectedEmail = this.emails.find(email => email.id === emailClicked);
-           this.selectedEmail.isOpen = 'read';
+           this.selectedEmail.isOpen = true;
            emailService.saveEmail(this.selectedEmail);
-           console.log('select email',this.selectedEmail);
         },
         //desicide if use delete here or in email-preview cmp
         deleteEmail(emailId){
             //part of trying to render next mail after deletion
             this.selectedEmailIdx = this.emails.findIndex(email => email.id === emailId);
             //
-            console.log('select email',emailId);
             emailService.deleteEmail(emailId)
             .then(emails =>{
                 this.emails = emails;
@@ -70,6 +69,28 @@ export default {
                 console.log('create book', emails);
                 this.emails = emails;
             })
+        },
+        addEmail(newEmail) {
+            emailService.addEmail(newEmail)
+                .then(emails => {
+                    this.emails = emails;
+                })
+            console.log('email received')
+            console.log(this.emails, this.emails.length)
+        },
+        sortBySubject() {
+            this.emails = emailService.sortBySubject(this.emails)
+        },
+        sortByDate() {
+            this.emails = emailService.sortByDate(this.emails)
+        },
+        func(email){
+
+            emailService.toggleReadStatus(email)
+                .then((emails) => {
+                    this.emails =  emails;
+                })
+            
         }
     },
     components: {
