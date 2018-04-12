@@ -1,7 +1,7 @@
 import home from "./pages/home.js";
 import email from "./pages/email.js";
 import keep from "./pages/keep.js";
-import place from "./pages/place.js";
+import places from "./pages/places.js";
 
 
 
@@ -9,7 +9,7 @@ const routes = [
     {path: '/', component: home},
     {path: '/email', component: email },
     {path: '/email/:emailId', component: email },
-    {path: '/place', component:place },
+    {path: '/places', component:places },
     {path: '/keep', component: keep}
   ];
 
