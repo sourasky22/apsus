@@ -46,6 +46,16 @@ function deleteEmail(emailId) {
 }
 
 
+function addEmail(email) {
+    return storageService.load(KEY)
+    console.log('legnth before adding', emails.length)
+    .then(emails => {
+        emails.push(email);
+        storageService.store(KEY, emails);
+        console.log('legnth after adding', emails.length)
+        return storageService.load(KEY)
+    })
+}
 
 function saveEmail(email) {
     console.log('save email', email)
@@ -98,6 +108,7 @@ export default {
     deleteEmail,
     saveEmail,
     createEmail,
-    generateEmails
+    generateEmails,
+    addEmail
 }
 

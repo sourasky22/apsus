@@ -12,6 +12,11 @@ import emailService from "../services/email.service.js";
 export default {
     template:`
     <section class="email container grid-container">
+        <button>
+            <email-compose>
+                Compose
+            </email-compose>
+        </button>
         <div class="item1">
             <email-filter @filtered="filterBy"></email-filter>
             <email-list class="email-list" @selected="emailToShow" :emails="emails" v-if="emails"></email-list>
@@ -28,7 +33,7 @@ export default {
             return {
                 emails: null, 
                 filter: null,
-                selectedEmailId: null,
+                selectedEmailIdx: null,
                 filteredEmails: [],
                 selectedEmail: null
             }
@@ -49,10 +54,14 @@ export default {
         },
         //desicide if use delete here or in email-preview cmp
         deleteEmail(emailId){
+            //part of trying to render next mail after deletion
+            this.selectedEmailIdx = this.emails.findIndex(email => email.id === emailId);
+            //
             console.log('select email',emailId);
             emailService.deleteEmail(emailId)
             .then(emails =>{
                 this.emails = emails;
+                this.selectedEmail = this.emails[this.selectedEmailIdx];
             })
         },
         filterBy(input) {
