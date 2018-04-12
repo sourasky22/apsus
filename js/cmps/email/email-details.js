@@ -15,6 +15,7 @@ export default {
     methods: {
         //not refresh
         deleteEmail() {
+            
             this.$emit('delete', this.selectedEmail.id);
             }
     },

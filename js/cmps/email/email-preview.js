@@ -5,11 +5,16 @@ export default {
         <section class="email-preview">
             <h5>{{email.subject}}</h5>
              <p>{{email.sentAt}}</p>
-             <p>has been opened? {{email.isOpen}}</p>
+             <p>Unread? <button @click.stop="toggleRead">{{email.isOpen}}</button></p>
         </section>
     `,
     data() {
         return {
+        }
+    },
+    methods: {
+        toggleRead(email) {
+            this.$emit('toggleRead', this.email);
         }
     }
    

@@ -47,10 +47,10 @@ function deleteEmail(emailId) {
 
 
 function addEmail(email) {
+    // console.log('legnth before adding', emails.length)
     return storageService.load(KEY)
-    console.log('legnth before adding', emails.length)
     .then(emails => {
-        emails.push(email);
+        emails.unshift(email);
         storageService.store(KEY, emails);
         console.log('legnth after adding', emails.length)
         return storageService.load(KEY)
@@ -69,7 +69,7 @@ function saveEmail(email) {
                 emails.push(email);
             }
             return storageService.store(KEY, emails);
-        });
+        })
 }
 
 function generateEmails() {
@@ -91,16 +91,42 @@ function createEmail() {
         id: uniqueId++,
         title: loremIpsum.generate(utilService.getRandomInt(1, 4), utilService.getRandomInt(3, 6)),
         subject: loremIpsum.generate(utilService.getRandomInt(5, 11), utilService.getRandomInt(1, 4)),
-        sentAt: moment(Date.now()).format('LT'),
+        sentAt: moment(Date.now()).format('llll'),
         description: loremIpsum.generate(utilService.getRandomInt(10, 30), utilService.getRandomInt(1, 4)),
-        categories: ['Computers', 'Hack'],
-        isOpen: 'unread'
+        isOpen: false
     }
     return email;
 }
+// Mail Sorting by Title or Date
+function sortBySubject(emails) {
+    emails.sort(compareSubject);
+    return emails
+}
+function compareSubject(a,b) {
+    if (a.subject > b.subject) return 1;
+    if (a.subject < b.subject) return -1;
+    else return 0;
+}
+function sortByDate(emails) {
+    
+    emails.sort(compareDate);
+    
+    return emails
+}
+function compareDate(a,b) {
+    return b.sentAt-a.sentAt;
+}
 
-
-
+function  toggleReadStatus(email) {
+    return storageService.load(KEY)
+        .then(emails => {
+            var newM = emails.find(e => e.id === email.id)
+            newM.isOpen = !newM.isOpen
+            console.log(newM)
+            storageService.store(KEY, emails);
+            return storageService.load(KEY)
+        })
+}
 
 export default {
     query,
@@ -109,6 +135,9 @@ export default {
     saveEmail,
     createEmail,
     generateEmails,
-    addEmail
+    addEmail,
+    sortBySubject,
+    sortByDate,
+    toggleReadStatus
 }
 
