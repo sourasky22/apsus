@@ -54,9 +54,7 @@ export default {
         },
         //desicide if use delete here or in email-preview cmp
         deleteEmail(emailId){
-            //part of trying to render next mail after deletion
             this.selectedEmailIdx = this.emails.findIndex(email => email.id === emailId);
-            //
             emailService.deleteEmail(emailId)
             .then(emails =>{
                 this.emails = emails;
