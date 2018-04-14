@@ -107,6 +107,21 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 }
 
 
+                //old need to delete
+                    // function search(input) {
+                    //     marker.setMap(null);
+                    //     return locService.getCords(input)
+                    //         .then(pos => {
+                    //             console.log('pos for search', pos);
+                    //             addMarker(pos);
+                    //             setCenter(pos);
+                    //         })
+                    //         .catch(err => {
+                    //             console.log('err!!!', err);
+                    //         })
+                    // }
+
+
 function addMarker(loc) {
     marker = new google.maps.Marker({
         position: loc,
@@ -116,12 +131,12 @@ function addMarker(loc) {
     markers.push(marker);
 }
 
-            function setMarkers(){
-                addMarker(places[0].pos);
-                addMarker(places[1].pos);
-                addMarker(places[2].pos);
-                setCenter(places[2].pos); // for testing set center for last place in marker list
-            }
+function setMarkers(){
+    addMarker(places[0].pos);
+    addMarker(places[1].pos);
+    addMarker(places[2].pos);
+    setCenter(places[2].pos); // for testing set center for last place in marker list
+}
 
 // function addMarker(loc) {
 //     var infowindow = new google.maps.InfoWindow();
@@ -229,6 +244,15 @@ function deletePlace(placeId) {
         })
 }
 
+function addPlace(place) {
+    return storageService.load(KEY)
+        .then(places => {
+            places.unshift(place);
+            // markers[placeIdx].setMap(null); //figure out adding marker of new place 
+            storageService.store(KEY, places);
+            return storageService.load(KEY)
+        })
+}
 
 export default {
     initMap,
@@ -238,7 +262,8 @@ export default {
     query,
     deletePlace,
     search,
-    setMarkers
+    setMarkers,
+    addPlace
 }
 
 
