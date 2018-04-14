@@ -17,14 +17,21 @@ function query(filter = null) {
                 storageService.store(KEY, emails);
             }
             if (filter === null) return emails;
-            else return emails.filter(email => {
-                if (filter.emailStatus !== 'all') {
-                    if (filter.emailStatus !== email.isOpen) return false
-                } 
-                return true;
+            else {
+                if (filter.txt === '') {
+                    return emails.filter(email => {
+                        if (filter.emailStatus !== 'all') {
+                            if (filter.emailStatus === 'unread') return email.isOpen === 'unread'
+                            else return email.isOpen === 'read'
+                        }
+                        return emails;
+                    })
+                } else {
+                    return emails.filter(email => {
+                        email.description.includes(filter.txt) || email.subject.includes(filter.txt)
+                    });
+                }
             }
-            //   email.description.includes(filter.txt) || email.subject.includes(filter.txt)
-            )
         })
 }
 
@@ -49,16 +56,16 @@ function deleteEmail(emailId) {
 function addEmail(email) {
     // console.log('legnth before adding', emails.length)
     return storageService.load(KEY)
-    .then(emails => {
-        emails.unshift(email);
-        storageService.store(KEY, emails);
-        console.log('legnth after adding', emails.length)
-        return storageService.load(KEY)
-    })
+        .then(emails => {
+            emails.unshift(email);
+            storageService.store(KEY, emails);
+            // console.log('legnth after adding', emails.length)
+            return storageService.load(KEY)
+        })
 }
 
 function saveEmail(email) {
-    console.log('save email', email)
+    // console.log('save email', email)
     return storageService.load(KEY)
         .then(emails => {
             if (email.id) {
@@ -93,7 +100,7 @@ function createEmail() {
         subject: loremIpsum.generate(utilService.getRandomInt(5, 11), utilService.getRandomInt(1, 8)),
         sentAt: moment(Date.now()).format('L'),
         description: loremIpsum.generate(utilService.getRandomInt(30, 150), utilService.getRandomInt(1, 8)),
-        isOpen: false
+        isOpen: 'unread'
     }
     return email;
 }
@@ -103,27 +110,27 @@ function sortBySubject(emails) {
     emails.sort(compareSubject);
     return emails
 }
-function compareSubject(a,b) {
+function compareSubject(a, b) {
     if (a.subject > b.subject) return 1;
     if (a.subject < b.subject) return -1;
     else return 0;
 }
 function sortByDate(emails) {
-    
+
     emails.sort(compareDate);
-    
+
     return emails
 }
-function compareDate(a,b) {
-    return b.sentAt-a.sentAt;
+function compareDate(a, b) {
+    return b.sentAt - a.sentAt;
 }
 
-function  toggleReadStatus(email) {
+function toggleReadStatus(email) {
     return storageService.load(KEY)
         .then(emails => {
             var newM = emails.find(e => e.id === email.id)
             newM.isOpen = !newM.isOpen
-            console.log(newM)
+            // console.log(newM)
             storageService.store(KEY, emails);
             return storageService.load(KEY)
         })
