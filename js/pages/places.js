@@ -7,7 +7,7 @@ import placesAdd from "../cmps/places/places-add.js"
 
 import locService from "../services/loc.service.js";
 import mapService from "../services/map.service.js";
-import placesSave from "../cmps/places/places-save.js";
+
 
 
 
@@ -68,7 +68,7 @@ export default {
             mapService.addPlace(place)
             .then(places =>{
                 this.places = places;
-                
+
             })
             this.newPlace = null;
             console.log('new place data sent to service')

@@ -4,8 +4,8 @@ export default {
     template:`
     <section class="compose">
         <form class="flex flex-column justify-start" @submit.prevent="addPlace">
-            <input type="text" v-model="newPlace.name" placeholder="{{placeClicked.name}}"></input>
-            <input type="text" v-model="newPlace.address" placeholder="{{placeCLicked.address}}"></input>
+            <input type="text" v-model="newPlace.name" placeholder="Name"></input>
+            <input type="text" v-model="newPlace.address" placeholder="Address"></input>
             <textarea type="text" v-model="newPlace.description" placeholder="Description"></textarea>
             <input type="text" v-model="newPlace.tag" placeholder="Tag"></input>
             <button type="submit">Add place to list</button>
