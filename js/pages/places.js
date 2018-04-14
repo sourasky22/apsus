@@ -39,44 +39,45 @@ export default {
             newPlace: null,
         }
     },
-    created(){
+    created() {
         mapService.query()
-        .then(places => {
-            console.log('get places', places);
-            this.places = places;
-        })
+            .then(places => {
+                console.log('get places', places);
+                this.places = places;
+            })
     },
     methods: {
         placeToShow(placeClicked) {
-           this.selectedPlace = this.places.find(place => place.id === placeClicked);
-           mapService.setCenter(this.selectedPlace.pos);
-           console.log('clicked place',this.selectedPlace);
+            this.selectedPlace = this.places.find(place => place.id === placeClicked);
+            mapService.setCenter(this.selectedPlace.pos);
+            console.log('clicked place', this.selectedPlace);
         },
-        deletePlace(placeId){
+        deletePlace(placeId) {
             //part of trying to render next mail after deletion
             this.selectedPlaceIdx = this.places.findIndex(place => place.id === placeId);
             //
-            console.log('select place',placeId);
+            console.log('select place', placeId);
             mapService.deletePlace(placeId)
-            .then(places =>{
-                this.places = places;
-                this.selectedPlace = this.places[this.selectedPlaceIdx];
-            })
+                .then(places => {
+                    this.places = places;
+                    this.selectedPlace = this.places[this.selectedPlaceIdx];
+                })
         },
-        addPlace(place){
+        addPlace(place) {
             this.newPlace = place;
             mapService.addPlace(place)
-            .then(places =>{
-                this.places = places;
+                .then(places => {
+                    this.places = places;
 
-            })
+                })
             this.newPlace = null;
             console.log('new place data sent to service', place)
         },
-        createPlace(pos){
+        
+        createPlace(pos) {
             this.newPlace = pos;
         }
-        },
+    },
     components: {
         placesMap,
         placesList,
@@ -85,4 +86,3 @@ export default {
         placesAdd
     }
 }
-
