@@ -1,14 +1,14 @@
 
 export default {
-    template:`
+    template:` 
     <section class="compose">
-        <form class="flex flex-column justify-start" @submit.prevent="sendEmail">
-            <input type="text" v-model="newEmail.to" placeholder="To"></input>
-            <input type="text" v-model="newEmail.subject" placeholder="Subject"></input>
-            <textarea type="text" v-model="newEmail.description" placeholder="Description"></textarea>
-            <button type="submit">Send</button>
+        <form class="message flex flex-column justify-start" @submit.prevent="sendEmail">
+            <input class="msg-to" type="text" v-model="newEmail.to" placeholder="To"></input>
+            <input class="msg-subj" type="text" v-model="newEmail.subject" placeholder="Subject"></input>
+            <textarea class="msg-desc" type="text" v-model="newEmail.description" placeholder="Description"></textarea>
+            <button class="send-btn" type="submit">Send</button>
         </form>    
-    </section>
+    </section> 
 
     `,
     data() {

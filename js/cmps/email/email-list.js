@@ -7,13 +7,15 @@ export default {
     props: ['emails', 'emailIdx'] ,
     template:`
     <section>
-        <h1>Email list</h1>
         <h1 v-if="msg">{{msg}}</h1>
-        <button @click="sortBySubject">Subject</button>
-        <button @click="sortByDate">Date</button>
-        <ul>
-          <li class="email-preview" v-for="email in emails">
-               <email-preview :email="email" @toggleRead="$emit('toggleRead',$event) " @click.native="emitSelected(email.id)"></email-preview>
+        <div class="filterByBtns">
+        <p class="title is-4">Filter by:</p>
+        <button class="button is-primary" @click="sortBySubject">Subject</button>
+        <button class="button is-primary" @click="sortByDate">Date</button>
+        </div>
+        <ul class="email-preview">
+          <li v-for="email in emails">
+               <email-preview :email="email" @toggleRead="$emit('toggleRead',$event)" @click.native="emitSelected(email.id)"></email-preview>
           </li>
          </ul>
 

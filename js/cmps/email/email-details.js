@@ -5,10 +5,14 @@ export default {
     props: ['selectedEmail'],
     template: `
         <section class="">
-        <button @click="deleteEmail">Delete</button>
-          <h3>{{selectedEmail.subject}}</h3>
-          <h3>{{selectedEmail.sendAt}}</h3>
-          <p>{{selectedEmail.sendAt}}</p>
+          <a @click="deleteEmail" class="button is-danger is-outlined">
+                <span>Delete</span>
+                    <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+            </a>
+          <h1 class="title is-2">{{selectedEmail.subject}}</h1>
+          <h3>{{selectedEmail.sentAt}}</h3>
           <p>{{selectedEmail.description}}</p>
         </section>
     `,

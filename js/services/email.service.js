@@ -89,14 +89,15 @@ function createEmail() {
 
     var email = {
         id: uniqueId++,
-        title: loremIpsum.generate(utilService.getRandomInt(1, 4), utilService.getRandomInt(3, 6)),
-        subject: loremIpsum.generate(utilService.getRandomInt(5, 11), utilService.getRandomInt(1, 4)),
-        sentAt: moment(Date.now()).format('llll'),
-        description: loremIpsum.generate(utilService.getRandomInt(10, 30), utilService.getRandomInt(1, 4)),
+        title: loremIpsum.generate(utilService.getRandomInt(1, 4), utilService.getRandomInt(1, 8)),
+        subject: loremIpsum.generate(utilService.getRandomInt(5, 11), utilService.getRandomInt(1, 8)),
+        sentAt: moment(Date.now()).format('L'),
+        description: loremIpsum.generate(utilService.getRandomInt(30, 150), utilService.getRandomInt(1, 8)),
         isOpen: false
     }
     return email;
 }
+
 // Mail Sorting by Title or Date
 function sortBySubject(emails) {
     emails.sort(compareSubject);

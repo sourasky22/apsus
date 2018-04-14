@@ -23,10 +23,29 @@ html {
     width: 100vw;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+header {
+    display: flex;
 }
+
+nav {
+    display: flex;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    height: 90px;
+}
+
+.header-menu {
+    display: flex;
+    align-items: center;
+}
+
+.header-menu li {
+    padding: 20px;
+}
+
 
 
 .gothic {
@@ -43,12 +62,10 @@ nav{
     background-color: rgba(37,47,57,.9);
     color: pink;
     width: 100%;
-    height: 60px;
+    height: 90px;
     top:0;
  }
 
  .router-link-active {
      color:green;
  }
-
- 

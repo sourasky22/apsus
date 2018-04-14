@@ -12,13 +12,11 @@ import emailService from "../services/email.service.js";
 export default {
     template:`
     <section class="email container1 grid-container1">
-            <div class="item4">
-                <email-compose @sent="addEmail">
-                    Compose
-                </email-compose>
-            </div>
+        <transition name="bounce">    
+      <email-compose v-if="sendMsg" @sent="addEmail"> </email-compose> 
+        </transition> 
         <div class="item1">
-            <email-filter @filtered="filterBy"></email-filter>
+            <email-filter @compose="sendEmail" @filtered="filterBy"></email-filter>
             <email-list class="email-list" @selected="emailToShow" :emails="emails" v-if="emails"
              @sortSubject="sortBySubject" @sortDate="sortByDate" @toggleRead="func"></email-list>
         </div>
@@ -36,7 +34,8 @@ export default {
                 filter: null,
                 selectedEmailIdx: null,
                 filteredEmails: [],
-                selectedEmail: null
+                selectedEmail: null,
+                sendMsg: false
             }
     },
     created(){
@@ -72,6 +71,7 @@ export default {
             emailService.addEmail(newEmail)
                 .then(emails => {
                     this.emails = emails;
+                    this.sendMsg = !this.sendMsg;
                 })
             console.log('email received')
             console.log(this.emails, this.emails.length)
@@ -88,8 +88,12 @@ export default {
                 .then((emails) => {
                     this.emails =  emails;
                 })
-            
+ 
+        },
+        sendEmail(event) {
+            this.sendMsg = !this.sendMsg;
         }
+
     },
     components: {
         emailFilter,
