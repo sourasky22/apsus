@@ -5,6 +5,7 @@ export default {
     data(){
         return{
             term: '',
+            saveToList: '',
         }
     },
     template: `
@@ -12,30 +13,24 @@ export default {
     <form class="search-bar" @submit.prevent="search">
     <input id="autocomplete" v-model="term" class="search-loc" type="text" placeholder="Enter location">
     </form>
+    <button @click="addToList(saveToList)">Save</button>
     </section>
     `,
     methods: {
         search() {
             mapService.search(this.term)
              .then(
-                ()=>{
+                (pos)=>{
                     this.term = "";
+                    console.log('check search', pos);
+                    this.saveToList = pos;
                 }
             );
-            // locService.getCords(this.term)
-            //     .then(pos => {
-            //         console.log('pos for search', pos);
-            //         mapService.addMarker(pos);
-            //         mapService.setCenter(pos);
-            //         this.term = "";
-            //     })
-            //     .catch(err => {
-            //         console.log('err!!!', err);
-            //     })
         },
-        mounted() {
-
-        },
+        addToList(pos) {
+         this.$emit('posToAdd');
+         console.log('add to list', pos)
+        }
     }
 }
 
