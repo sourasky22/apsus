@@ -92,18 +92,34 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         });
 }
 
-function search(input) {
-    marker.setMap(null);
-    return locService.getCords(input)
-        .then(pos => {
-            console.log('pos for search', pos);
-            addMarker(pos);
-            setCenter(pos);
-        })
-        .catch(err => {
-            console.log('err!!!', err);
-        })
-}
+                function search(input) {
+                   marker.setMap(null);
+                   return locService.getCords(input)
+                        .then(pos => {
+                            console.log('pos for search', pos);
+                            addMarker(pos);
+                            setCenter(pos);
+                            return pos
+                        })
+                        .catch(err => {
+                            console.log('err!!!', err);
+                        })
+                }
+
+
+                //old need to delete
+                    // function search(input) {
+                    //     marker.setMap(null);
+                    //     return locService.getCords(input)
+                    //         .then(pos => {
+                    //             console.log('pos for search', pos);
+                    //             addMarker(pos);
+                    //             setCenter(pos);
+                    //         })
+                    //         .catch(err => {
+                    //             console.log('err!!!', err);
+                    //         })
+                    // }
 
 
 function addMarker(loc) {
@@ -125,8 +141,15 @@ function setMarkers(){
 // function addMarker(loc) {
 //     var infowindow = new google.maps.InfoWindow();
 //     var service = new google.maps.places.PlacesService(map);
-//     service.getDetails({
-//         placeId: loc  // get place id 
+//     /////////////////get place id from google////////////////
+//     var googlePlaceId;
+//     locService.getPlaceId(loc)
+//     .then(pos => {
+//         console.log('place id call from add marker', pos);
+//         googlePlaceId = pos;
+//         console.log('googlePlaceId got placeid',  googlePlaceId);
+//         service.getDetails({
+//         placeId:  googlePlaceId  // get place id 
 //       }, function(place, status) {
 //         if (status === google.maps.places.PlacesServiceStatus.OK) {
 //             ////regular add marker lines
@@ -138,13 +161,18 @@ function setMarkers(){
 //             markers.push(marker);
 //            ////////////////////////////
 //        google.maps.event.addListener(marker, 'click', function() {
-//         infowindow.setContent(`<div class="info-window"><strong>Address: ${place.name}</strong><br>'
-//           ${marker.position} <button></button></div>`);
+//         infowindow.setContent(`<div class="info-window"><strong>Address: ${place.formatted_address}</strong><br>'
+//           ${marker.position} </div>`);
 //         infowindow.open(map, this);
-//       });
-//     }
-//   });
-// }
+//                });
+//              }
+//           });
+//     })
+//     .catch(err => {
+//         console.log('err!!!', err);
+//     })
+//     ///////////////////////////////////////////////////////
+// } 
 
 function setCenter(loc) {
     map.setCenter(loc);
@@ -179,6 +207,9 @@ function query(filter = null) {
         })
 }
 
+// function getGooglePlaceId () {
+
+// }
 
 
 // function generatePlaces() {

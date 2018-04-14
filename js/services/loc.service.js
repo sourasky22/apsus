@@ -47,9 +47,21 @@ return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${ad
  })
 }
 
+function getPlaceId(pos){
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&key=AIzaSyBSwBN9DWvwKbCTD8_iLPOZJwRwZGj3-aE`)
+    .then(function (res) {
+        console.log('get place id',res.data.results[0].place_id);
+       return res.data.results[0].place_id;
+   })
+}
+
+
+
+
 
 export default {
     getLocs :getLocs,
     getPosition: getPosition,
-    getCords: getCords
+    getCords: getCords,
+    getPlaceId
 }
