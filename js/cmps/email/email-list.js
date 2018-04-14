@@ -45,11 +45,6 @@ export default {
             console.log('sorting by date')
             this.$emit('sortDate', this.emails);
         },
-        // toggleRead(email) {
-        //     email.isOpen = !$email.isOpen;
-
-        //     console.log('toggling read status of', email.isOpen)
-        // }
     },
 
     components: {
