@@ -11,7 +11,7 @@ import emailService from "../services/email.service.js";
 
 export default {
     template:`
-    <section class="email container grid-container">
+    <section class="email container1 grid-container1">
             <div class="item4">
                 <email-compose @sent="addEmail">
                     Compose

@@ -16,16 +16,22 @@ export default {
     `,
     methods: {
         search() {
-            locService.getCords(this.term)
-                .then(pos => {
-                    console.log(pos);
-                    mapService.addMarker(pos);
-                    mapService.setCenter(pos);
+            mapService.search(this.term)
+             .then(
+                ()=>{
                     this.term = "";
-                })
-                .catch(err => {
-                    console.log('err!!!', err);
-                })
+                }
+            );
+            // locService.getCords(this.term)
+            //     .then(pos => {
+            //         console.log('pos for search', pos);
+            //         mapService.addMarker(pos);
+            //         mapService.setCenter(pos);
+            //         this.term = "";
+            //     })
+            //     .catch(err => {
+            //         console.log('err!!!', err);
+            //     })
         },
         mounted() {
 

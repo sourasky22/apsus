@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1444px" height="896px" viewBox="0 0 1444 896" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>bgLayer</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M95.6553614,328.545703 C95.5713783,328.661365 95.4941944,328.719979 95.4241342,328.719979 C90.1774643,328.719979 90.820868,320.622025 89.8985079,308.281717 C84.4168774,234.942677 2.07963871,149.370963 2.07963871,96.2265219 C2.07963871,43.0820814 43.5518883,0 94.7105007,0 C95.0291791,0 95.3441185,0.0127553925 95.655352,0.0381072653 C95.966598,0.0127556432 96.2815405,0 96.6002221,0 C147.758835,0 189.231084,43.0820814 189.231084,96.2265219 C189.231084,149.370963 106.893845,234.942677 101.412215,308.281717 C100.489855,320.622025 101.133258,328.719979 95.8865885,328.719979 C95.8165284,328.719979 95.7393445,328.661365 95.6553614,328.545703 Z" id="path-1"></path>
+        <filter x="-0.8%" y="-0.5%" width="101.6%" height="100.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bgLayer" transform="translate(0.000000, -2.000000)">
+            <g transform="translate(2.000000, 0.000000)">
+                <rect id="Sky" fill="#A3E4EA" x="0" y="2" width="1440" height="895"></rect>
+                <text id="x" font-family="LucidaGrande-Bold, Lucida Grande" font-size="125" font-weight="bold" fill="#295A65">
+                    <tspan x="332" y="241">misterPlaces</tspan>
+                </text>
+            </g>
+            <g id="middleLayer">
+                <path d="M3.19744231e-14,632.582075 C53.6937636,517.033956 156.440099,324.164762 212.750933,402.355874 C291.318726,511.452165 356.113007,402.35587 356.113007,402.35587 C356.113007,402.35587 458.347809,188.927289 552.599365,402.355866 C646.850922,615.784444 776.30635,430.551825 776.30635,430.551825 C776.30635,430.551825 890.336609,308.015453 997.696411,430.551822 C1105.05621,553.088191 1338.49752,686.304966 1338.49752,686.304966 L5.68434189e-14,711.197035 L1.13686838e-13,632.582075 Z" id="Bg-Mountain" fill="#00695C"></path>
+                <path d="M1442,617.516277 L1442,713.139563 C1161.78616,719.51953 339.058463,735.852253 213.214836,710.911209 C61.1244722,680.768304 331.501271,716.338616 491.404643,486.519589 C651.308015,256.700562 718.260427,445.441933 779.519389,530.340835 C840.778352,615.239737 888.766521,365.75274 1001.57457,530.340835 C1114.38261,694.92893 1210.86612,384.969671 1355.30094,530.340834 C1390.2191,565.485369 1418.7734,594.190732 1442,617.516277 Z" id="Mountain" fill="#0A7C6F"></path>
+            </g>
+            <g id="topLayer" transform="translate(1.000000, 0.000000)">
+                <path d="M1441,622.532579 L1441,895 L310,895 L310,897 L-5.68434189e-14,897 L-5.68434189e-14,623.472613 C0.664185342,623.314494 1.33084975,623.156955 2,623 C361.584561,538.656085 1080.08947,538.500288 1441,622.53261 Z" id="Grass" fill="#16A364"></path>
+                <path d="M1443,623 L1443,755.795105 L829.892267,760.572093 L749.05174,559.69302 C1010.29411,561.031829 1268.77609,582.134156 1443,623 Z" id="Pavement" fill="#D2D2D2"></path>
+                <path d="M1443,707.985473 L1443,897 L855.274917,897 L787.161323,724.742826 L1443,707.985473 Z" id="Water" fill="#408FF6"></path>
+                <g id="White-Street" transform="translate(650.000000, 687.000000)">
+                    <rect fill="#FFFFFF" x="0" y="0" width="793" height="53"></rect>
+                    <rect id="Bottom-Gray" fill="#C5C5C5" x="0" y="42" width="793" height="11"></rect>
+                    <rect id="Top-Gray" fill="#C5C5C5" x="0" y="0" width="793" height="11"></rect>
+                </g>
+                <g id="Yellow-HIghway" transform="translate(512.000000, 560.000000)">
+                    <polygon id="Rectangle-26-Copy" fill="#F9CA27" points="131.674208 0 256.325792 0 388 338 0 338"></polygon>
+                    <polygon id="Rectangle-26-Copy-2" fill="#FFE03A" points="161.674208 0 227.325792 0 359 338 30 338"></polygon>
+                </g>
+                <g id="Pin" transform="translate(1023.000000, 332.000000)">
+                    <g id="PinMap">
+                        <use fill="#E14C39" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    </g>
+                    <ellipse id="Oval-3" fill="#842C25" cx="94.2434211" cy="96.6908397" rx="31.4144737" ry="31.3931298"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

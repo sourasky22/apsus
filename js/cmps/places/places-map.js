@@ -10,7 +10,8 @@ export default {
         mapService.initMap()
         .then(
             ()=>{
-                mapService.addMarker({lat: 32.0749831, lng: 34.9120554});
+                mapService.setMarkers();
+                // mapService.addMarker({lat: 32.0749831, lng: 34.9120554});
             }
         );
     }

@@ -10,14 +10,19 @@
 </head>
 
 <body>
-
     <div id="app">
-        <nav>
-            <router-link exact to="/">Home</router-link> |
-            <router-link to="/email">Email</router-link> |
-            <router-link to="/places">Places</router-link> |
-            <router-link to="/keep">Keeper</router-link>
+    <header class="flex">
+        <nav class="flex align-center space-between">
+             <img class="logo"src="../img/keep/logo.gif" alt="">
+             <ul class="header-menu flex clean-list">
+             <li><router-link exact to="/">Home</router-link></li> |
+             <li> <router-link to="/email">Email</router-link></li>|
+             <li>  <router-link to="/places">Places</router-link> </li>|
+                <li>  <router-link to="/keep">Keeper</router-link></li>
+            </ul>
         </nav>
+    </header>
+    </header>
         <main>
         <router-view></router-view>
     </main>

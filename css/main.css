@@ -1,10 +1,9 @@
 @import './base.css';
 @import './helpers.css';
-@import './toggle-btn.css';
-@import './user-msg.css';
+/* @import './toggle-btn.css'; */
+/* @import './user-msg.css'; */
 
-@import 'global.css';
-
+@import './global.css';
 
 /* @import 'normal.css' (min-width: 850px);  */
 /* @import '_mobile-menu.css'; */
@@ -18,7 +17,10 @@ html {
     font-family: 'Gothic';
     font-size: 16px;
     text-transform:initial;
-    /* color: #d2daed; */
+    background: #dadada;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
 }
 
 ul {
@@ -38,7 +40,7 @@ body{
 
 nav{
     position: absolute;
-    background-color: lightblue;
+    background-color: rgba(37,47,57,.9);
     color: pink;
     width: 100%;
     height: 60px;

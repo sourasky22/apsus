@@ -13,12 +13,12 @@ import mapService from "../services/map.service.js";
 
 export default {
     template: `
-     <section class="container grid-container">
-        <div class="search">
-            <places-search></places-search>
-        </div>
+     <section class="">
         <div class="map">
             <places-map></places-map>
+        </div>
+        <div class="search">
+            <places-search></places-search>
         </div>
         <div class="list">
             <places-list v-if="places" :places="places" @selected="placeToShow" @delete="deletePlace"></places-list>
@@ -44,18 +44,18 @@ export default {
     methods: {
         placeToShow(placeClicked) {
            this.selectedPlace = this.places.find(place => place.id === placeClicked);
-        //    emailService.saveEmail(this.selectedEmail);
-           console.log('select place',this.selectedPlace);
+           mapService.setCenter(this.selectedPlace.pos);
+           console.log('clicked place',this.selectedPlace);
         },
         deletePlace(placeId){
             //part of trying to render next mail after deletion
             this.selectedPlaceIdx = this.places.findIndex(place => place.id === placeId);
             //
-            console.log('select email',placeId);
-            emailService.deletePlace(placeId)
+            console.log('select place',placeId);
+            mapService.deletePlace(placeId)
             .then(places =>{
                 this.places = places;
-                this.selectedplace = this.places[this.selectedPlaceIdx];
+                this.selectedPlace = this.places[this.selectedPlaceIdx];
             })
         }
         },

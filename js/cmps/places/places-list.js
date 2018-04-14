@@ -1,6 +1,9 @@
 
 import placesPreview from "./places-preview.js"
 
+import mapService from "../../services/map.service.js";
+
+
 export default {
     props: ['places'] ,
     template:`
@@ -8,7 +11,7 @@ export default {
         <h1>Places list</h1>
         <ul>
           <li class="places" v-for="place in places">
-            <button @click="deleteEmail">Delete</button>
+            <button @click="deletePlace(place.id)">Delete</button>
             <places-preview :place="place" @click.native="emitSelected(place.id)"></places-preview>
           </li>
          </ul>
@@ -22,8 +25,8 @@ export default {
         emitSelected(id) {
             this.$emit('selected', id);
         },
-        deleteEmail() {
-            this.$emit('delete', this.selectedEmail.id);
+        deletePlace(id) {
+            this.$emit('delete',id);
       }
     },
     components: {
