@@ -12,6 +12,7 @@ export default {
         <ul>
           <li class="places" v-for="place in places">
             <button @click="deletePlace(place.id)">Delete</button>
+            <!-- <button @click="updatePlace(place)">Edit</button> -->
             <places-preview :place="place" @click.native="emitSelected(place.id)"></places-preview>
           </li>
          </ul>
@@ -27,7 +28,10 @@ export default {
         },
         deletePlace(id) {
             this.$emit('delete',id);
-      }
+        },
+        updatePlace(place) {
+            this.$emit('update', place);
+        }
     },
     components: {
        placesPreview

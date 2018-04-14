@@ -92,34 +92,34 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         });
 }
 
-                function search(input) {
-                   marker.setMap(null);
-                   return locService.getCords(input)
-                        .then(pos => {
-                            console.log('pos for search', pos);
-                            addMarker(pos);
-                            setCenter(pos);
-                            return pos
-                        })
-                        .catch(err => {
-                            console.log('err!!!', err);
-                        })
-                }
+function search(input) {
+    marker.setMap(null);
+    return locService.getCords(input)
+        .then(pos => {
+            console.log('pos for search', pos);
+            addMarker(pos);
+            setCenter(pos);
+            return pos
+        })
+        .catch(err => {
+            console.log('err!!!', err);
+        })
+}
 
 
-                //old need to delete
-                    // function search(input) {
-                    //     marker.setMap(null);
-                    //     return locService.getCords(input)
-                    //         .then(pos => {
-                    //             console.log('pos for search', pos);
-                    //             addMarker(pos);
-                    //             setCenter(pos);
-                    //         })
-                    //         .catch(err => {
-                    //             console.log('err!!!', err);
-                    //         })
-                    // }
+//old need to delete
+    // function search(input) {
+    //     marker.setMap(null);
+    //     return locService.getCords(input)
+    //         .then(pos => {
+    //             console.log('pos for search', pos);
+    //             addMarker(pos);
+    //             setCenter(pos);
+    //         })
+    //         .catch(err => {
+    //             console.log('err!!!', err);
+    //         })
+    // }
 
 
 function addMarker(loc) {
@@ -255,6 +255,15 @@ function addPlace(place) {
         })
 }
 
+function updatePlace(place) {
+    return storageService.load(KEY)
+        .then(places => {
+            
+            storageService.store(KEY, places);
+            return storageService.load(KEY)
+        })
+}
+
 export default {
     initMap,
     addMarker,
@@ -264,7 +273,8 @@ export default {
     deletePlace,
     search,
     setMarkers,
-    addPlace
+    addPlace,
+    updatePlace
 }
 
 
