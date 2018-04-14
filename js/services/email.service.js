@@ -28,7 +28,7 @@ function query(filter = null) {
                     })
                 } else {
                     return emails.filter(email => {
-                        email.description.includes(filter.txt) || email.subject.includes(filter.txt)
+                       return (email.description.includes(filter.txt) || email.subject.includes(filter.txt))
                     });
                 }
             }

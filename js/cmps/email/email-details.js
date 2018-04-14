@@ -11,7 +11,7 @@ export default {
                     <i class="fas fa-times"></i>
                 </span>
             </a>
-          <h1 class="title is-2">{{selectedEmail.subject}}</h1>
+          <h1 class="msg-subject title is-2">{{selectedEmail.subject}}</h1>
           <h3>{{selectedEmail.sentAt}}</h3>
           <p>{{selectedEmail.description}}</p>
         </section>
@@ -29,4 +29,3 @@ export default {
     }
    
 }
-
