@@ -28,7 +28,7 @@ export default {
             );
         },
         addToList(pos) {
-         this.$emit('posToAdd');
+         this.$emit('posToAdd', pos);
          console.log('add to list', pos)
         }
     }

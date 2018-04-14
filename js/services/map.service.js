@@ -248,6 +248,7 @@ function addPlace(place) {
     return storageService.load(KEY)
         .then(places => {
             places.unshift(place);
+            addMarker(place.pos);
             // markers[placeIdx].setMap(null); //figure out adding marker of new place 
             storageService.store(KEY, places);
             return storageService.load(KEY)

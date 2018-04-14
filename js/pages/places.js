@@ -19,7 +19,7 @@ export default {
             <places-map></places-map>
         </div>
         <div class="search">
-            <places-search></places-search>
+            <places-search @posToAdd="createPlace"></places-search>
         </div>
         <div class="list">
             <places-list v-if="places" :places="places" @selected="placeToShow" @delete="deletePlace"></places-list>
@@ -27,8 +27,8 @@ export default {
         <div class="details" v-if="selectedPlace">
             <places-details :places="places" :selectedPlace="selectedPlace"></places-details>
         </div>
-        <div>
-            <places-add v-if="newPlace" @added="addPlace"></places-add>
+        <div class="places-add">
+            <places-add :newPlace="newPlace" v-if="newPlace" @added="addPlace" ></places-add>
         </div>
     </section>
     `,
@@ -36,7 +36,7 @@ export default {
         return {
             places: null,
             selectedPlace: null,
-            newPlace: null
+            newPlace: null,
         }
     },
     created(){
@@ -71,14 +71,18 @@ export default {
 
             })
             this.newPlace = null;
-            console.log('new place data sent to service')
+            console.log('new place data sent to service', place)
+        },
+        createPlace(pos){
+            this.newPlace = pos;
         }
         },
     components: {
         placesMap,
         placesList,
         placesSearch,
-        placesDetails
+        placesDetails,
+        placesAdd
     }
 }
 
