@@ -1,17 +1,25 @@
 export default {
+    props: ['mailCount'],
     template:`
     <section class="email-status">
-            <progress class="progress is-primary" value="15" max="100">30%</progress>
-            <!-- <progress class="progress is-link" value="30" max="100">30%</progress>
-            <progress class="progress is-info" value="45" max="100">45%</progress>
-            <progress class="progress is-success" value="60" max="100">60%</progress>
-            <progress class="progress is-warning" value="75" max="100">75%</progress>
-            <progress class="progress is-danger" value="90" max="100">90%</progress> -->
+            <progress class="progress is-primary" value="prog" max="100"></progress>
     </section>
     `,
+    created() {
+        console.log('current progress' ,this.prog, 'current mailCount is', this.mailCount);
+        if (this.mailCount === 100) this.prog = 100;
+        else if (this.mailCount <= 90) this.prog = 90;
+        else if (this.mailCount <= 75) this.prog = 75;
+        else if (this.mailCount <= 60) this.prog = 60;
+        else if (this.mailCount <= 45) this.prog = 45;
+        else if (this.mailCount <= 30) this.prog = 30;
+        else if (this.mailCount <= 15) this.prog = 15;      
+    },
     data() {
         return {
-            filter: {byVendor: ''}
+            filter: {byVendor: ''},
+            prog: 0,
+            
         }
     },
     
@@ -19,5 +27,5 @@ export default {
         emitFilter() {
             this.$emit('filtered', this.filter)
         }
-    }
+    },
 }

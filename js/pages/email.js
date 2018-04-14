@@ -26,17 +26,16 @@ export default {
         <email-details class="email-details" v-if="selectedEmail" :selectedEmail="selectedEmail" @delete="deleteEmail"></email-details>
         </div>
         <div class="item3">
-         <email-status></email-status>
+         <email-status :mailCount="mailCount"></email-status>
         </div>
     </section>
     `,
     data() {
             return {
                 emails: null, 
-                filter: null,
                 selectedEmailIdx: null,
-                filteredEmails: [],
-                selectedEmail: null
+                selectedEmail: null,
+                mailCount: null,
             }
     },
     created(){
@@ -44,12 +43,13 @@ export default {
         .then(emails => {
             console.log('create book', emails);
             this.emails = emails;
+            this.mailCount = emails.length
         })
     },
     methods: {
         emailToShow(emailClicked) {
            this.selectedEmail = this.emails.find(email => email.id === emailClicked);
-           this.selectedEmail.isOpen = true;
+           this.selectedEmail.isOpen = 'read';
            emailService.saveEmail(this.selectedEmail);
         },
         //desicide if use delete here or in email-preview cmp
