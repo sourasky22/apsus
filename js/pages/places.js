@@ -3,10 +3,11 @@ import placesMap from "../cmps/places/places-map.js";
 import placesList from "../cmps/places/places-list.js";
 import placesSearch from "../cmps/places/places-search.js";
 import placesDetails from "../cmps/places/places-details.js";
-
+import placesAdd from "../cmps/places/places-add.js"
 
 import locService from "../services/loc.service.js";
 import mapService from "../services/map.service.js";
+import placesSave from "../cmps/places/places-save.js";
 
 
 
@@ -26,12 +27,16 @@ export default {
         <div class="details" v-if="selectedPlace">
             <places-details :places="places" :selectedPlace="selectedPlace"></places-details>
         </div>
+        <div>
+            <places-add v-if="newPlace" @added="addPlace"></places-add>
+        </div>
     </section>
     `,
     data() {
         return {
             places: null,
-            selectedPlace: null
+            selectedPlace: null,
+            newPlace: null
         }
     },
     created(){
@@ -57,6 +62,16 @@ export default {
                 this.places = places;
                 this.selectedPlace = this.places[this.selectedPlaceIdx];
             })
+        },
+        addPlace(place){
+            this.newPlace = place;
+            mapService.addPlace(place)
+            .then(places =>{
+                this.places = places;
+                
+            })
+            this.newPlace = null;
+            console.log('new place data sent to service')
         }
         },
     components: {
