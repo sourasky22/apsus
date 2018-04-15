@@ -2,7 +2,7 @@ export default {
 
     template:`
     <section class="email-filter">
-       <button class="button is-danger compose-btn" @click="sendMsg">Comopose</button> 
+       <button class="button compose-btn" @click="sendMsg">Comopose</button> 
         <input class="input is-success" type="text" v-model="filter.txt" @input="emitFilter">
         <div class="select">
             <select v-model="filter.emailStatus" @change="emitFilter">

@@ -1,7 +1,7 @@
 export default {
     template:`
     <section class="keep">
-        keep
+        <div class="keep-app">  </div>
     </section>
     `
 }

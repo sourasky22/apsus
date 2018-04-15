@@ -13,7 +13,12 @@ export default {
     <form class="search-bar" @submit.prevent="search">
     <input id="autocomplete" v-model="term" class="search-loc" type="text" placeholder="Enter location">
     </form>
-    <button @click="addToList(saveToList)">Save</button>
+    <a @click="addToList(saveToList)" class="button add-place">
+    <span class="icon is-small">
+    <i class="fas fa-map-marker"></i>
+    </span>
+    <span>Add place to list</span>
+   </a>
     </section>
     `,
     methods: {
