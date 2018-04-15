@@ -129,7 +129,8 @@ function toggleReadStatus(email) {
     return storageService.load(KEY)
         .then(emails => {
             var newM = emails.find(e => e.id === email.id)
-            newM.isOpen = !newM.isOpen
+            var toggle = newM.isOpen
+            newM.isOpen = (toggle === 'read')?  'unread':'read'
             // console.log(newM)
             storageService.store(KEY, emails);
             return storageService.load(KEY)

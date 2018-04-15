@@ -1,19 +1,15 @@
 export default {
-    props: ['mailCount'],
+    props: ['percent'],
     template:`
-    <section class="email-status">
-            <progress class="progress is-primary" value="prog" max="100"></progress>
+    <section class="email-status" style="width:100%; height:100%">
+    <div class="progress-bar " style="width:100%; height:100%"> 
+        <div style="height:80%; background:pink; text-align:right" :style="{width: percent + '%'}">
+                <slot></slot>
+        </div>
+    </div>
     </section>
     `,
-    created() {
-        console.log('current progress' ,this.prog, 'current mailCount is', this.mailCount);
-        if (this.mailCount === 100) this.prog = 100;
-        else if (this.mailCount <= 90) this.prog = 90;
-        else if (this.mailCount <= 75) this.prog = 75;
-        else if (this.mailCount <= 60) this.prog = 60;
-        else if (this.mailCount <= 45) this.prog = 45;
-        else if (this.mailCount <= 30) this.prog = 30;
-        else if (this.mailCount <= 15) this.prog = 15;      
+    created() {    
     },
     data() {
         return {

@@ -15,7 +15,7 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
   grid-gap: 10px;
-  margin-top: 98px;
+  margin-top: 90px;
 }
  
 /*-------nav---------*/
@@ -289,14 +289,24 @@
   color: white;
 }
 
+ /*-------keep---------*/
 
-.keep-app{
+/* .keep-app{
   height: calc( (100vh - 90px) ); 
   width: 100vw;
-  margin-top: 84px;
-  background-image: url('/img/keep/keepapp.png');
-  background-size: cover;
-  background-position: center;
+  margin-top: 90px;
+} */
 
+
+.grid-keep {
+  display: grid;
+  height: calc( (100vh - 90px) ); 
+  width: 100vw;
+  /* margin-left:0; */
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-gap: 10px;
+  margin-top: 90px;
 }
+ 
 

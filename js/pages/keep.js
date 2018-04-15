@@ -1,6 +1,6 @@
 export default {
     template:`
-    <section class="keep">
+    <section class="grid-keep">
         <div class="keep-app">  </div>
     </section>
     `

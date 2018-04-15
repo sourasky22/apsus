@@ -24,7 +24,9 @@ export default {
         <email-details class="email-details" v-if="selectedEmail" :selectedEmail="selectedEmail" @delete="deleteEmail"></email-details>
         </div>
         <div class="item3">
-         <email-status :mailCount="mailCount"></email-status>
+         <email-status :percent="readCount">
+             Emails read count
+         </email-status>
         </div>
     </section>
     `,
@@ -34,8 +36,7 @@ export default {
                 selectedEmailIdx: null,
                 filteredEmails: [],
                 selectedEmail: null,
-                sendMsg: false,
-                mailCount: null
+                sendMsg: false
             }
     },
     created(){
@@ -43,8 +44,17 @@ export default {
         .then(emails => {
             console.log('create book', emails);
             this.emails = emails;
-            this.mailCount = emails.length
         })
+    },
+    computed: {
+        readCount() {
+            if (!this.emails) return;
+            var readEmails = this.emails.filter(email => {
+                return email.isOpen === 'read'
+            });
+            console.log((readEmails.length / this.emails.length) * 100 )
+            return (readEmails.length / this.emails.length) * 100;
+        }
     },
     methods: {
         emailToShow(emailClicked) {
@@ -58,6 +68,7 @@ export default {
             emailService.deleteEmail(emailId)
             .then(emails =>{
                 this.emails = emails;
+                this.mailCount = emails.length
                 this.selectedEmail = this.emails[this.selectedEmailIdx];
             })
         },
